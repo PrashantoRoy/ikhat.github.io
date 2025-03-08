@@ -59,11 +59,14 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .logo {
-    width: 50px;
-    height: auto;
+    width: auto;
+    height: 60%;
+    max-width: 80%;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -503,11 +506,14 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .footer-logo img {
-    width: 80px;
-    height: auto;
+    width: auto;
+    height: 60%;
+    max-width: 80%;
+    object-fit: contain;
 }
 
 .footer-image {
@@ -576,6 +582,32 @@ button:focus,
     
     .nav-link {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Medium screens */
+    .logo-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .footer-logo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller screens */
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .footer-logo {
+        width: 100px;
+        height: 100px;
     }
 }
 
