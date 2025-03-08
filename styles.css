@@ -114,6 +114,13 @@ header {
     overflow: hidden;
 }
 
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* This helps maintain aspect ratio while filling the container */
+}
+
 .hero-content {
     width: 55%;
 }
