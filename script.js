@@ -280,13 +280,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = this.width || this.parentElement.offsetWidth || 300;
             const height = this.height || this.parentElement.offsetHeight || 200;
             
-            // Specific handling for hero image
-            if (this.alt === "Students at IKHAT") {
-                console.warn("Hero image failed to load: assets/Students at IKHAT.png");
+            // More specific handling based on image type
+            if (this.alt.includes("Heritage")) {
+                console.warn("Heritage icon failed to load");
+                this.src = `https://via.placeholder.com/80x80?text=Heritage`;
+            } 
+            else if (this.alt.includes("Life-skills")) {
+                console.warn("Life-skills icon failed to load");
+                this.src = `https://via.placeholder.com/80x80?text=Life-skills`;
             }
-            
-            // Set placeholder image
-            this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
+            else if (this.alt.includes("Well-being")) {
+                console.warn("Well-being icon failed to load");
+                this.src = `https://via.placeholder.com/80x80?text=Well-being`;
+            }
+            else {
+                // Default placeholder for other images
+                this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
+            }
         });
     });
 }
