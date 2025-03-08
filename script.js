@@ -274,29 +274,30 @@ document.addEventListener('DOMContentLoaded', function() {
      * Shows a placeholder image when the actual image fails to load
      */
     function handleImageFallbacks() {
+    // Keep track of whether we've logged about the logo already
+    let logoErrorLogged = false;
+    
     elements.images.forEach(img => {
         img.addEventListener('error', function() {
-            // Get image dimensions
+            // Special handling for logo
+            if (this.alt === "IKHAT Logo") {
+                // Only log the error once to avoid duplicate messages
+                if (!logoErrorLogged) {
+                    console.warn("Logo failed to load: assets/Logo.png");
+                    logoErrorLogged = true;
+                }
+                
+                // Create a text-based logo as fallback
+                this.outerHTML = `<div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%;">
+                                    <span style="color:var(--primary-blue); font-weight:bold; font-size:18px;">IKHAT</span>
+                                  </div>`;
+                return;
+            }
+            
+            // For other images
             const width = this.width || this.parentElement.offsetWidth || 300;
             const height = this.height || this.parentElement.offsetHeight || 200;
-            
-            // More specific handling based on image type
-            if (this.alt.includes("Heritage")) {
-                console.warn("Heritage icon failed to load");
-                this.src = `https://via.placeholder.com/80x80?text=Heritage`;
-            } 
-            else if (this.alt.includes("Life-skills")) {
-                console.warn("Life-skills icon failed to load");
-                this.src = `https://via.placeholder.com/80x80?text=Life-skills`;
-            }
-            else if (this.alt.includes("Well-being")) {
-                console.warn("Well-being icon failed to load");
-                this.src = `https://via.placeholder.com/80x80?text=Well-being`;
-            }
-            else {
-                // Default placeholder for other images
-                this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
-            }
+            this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
         });
     });
 }
