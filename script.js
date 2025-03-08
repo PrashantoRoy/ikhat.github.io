@@ -274,17 +274,22 @@ document.addEventListener('DOMContentLoaded', function() {
      * Shows a placeholder image when the actual image fails to load
      */
     function handleImageFallbacks() {
-        elements.images.forEach(img => {
-            img.addEventListener('error', function() {
-                // Get image dimensions
-                const width = this.width || this.parentElement.offsetWidth || 300;
-                const height = this.height || this.parentElement.offsetHeight || 200;
-                
-                // Set placeholder image
-                this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
-            });
+    elements.images.forEach(img => {
+        img.addEventListener('error', function() {
+            // Get image dimensions
+            const width = this.width || this.parentElement.offsetWidth || 300;
+            const height = this.height || this.parentElement.offsetHeight || 200;
+            
+            // Specific handling for hero image
+            if (this.alt === "Students at IKHAT") {
+                console.warn("Hero image failed to load: assets/Students at IKHAT.png");
+            }
+            
+            // Set placeholder image
+            this.src = `https://via.placeholder.com/${width}x${height}?text=${this.alt || 'Image'}`;
         });
-    }
+    });
+}
 
     /**
      * Add skip link for keyboard accessibility
