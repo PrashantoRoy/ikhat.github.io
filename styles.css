@@ -301,6 +301,7 @@ header {
     width: 80px;
     height: 80px;
     margin-bottom: 10px;
+    object-fit: contain; /* This ensures the image maintains its aspect ratio */
 }
 
 .philosophy-item h3 {
